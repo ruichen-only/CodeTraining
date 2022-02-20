@@ -8,9 +8,9 @@ public class Algorithm_Java {
 	public static void main(String[] args) {
 		int[] elements = new int[] {1, 2, 5, 4, 3, 9, 100, 66, 7};
 		quickSort(elements, 0, elements.length - 1);
-		for(int i = 0; i < elements.length; i++) {
-			System.out.print(elements[i] + " ");
-		}
+        for (int element : elements) {
+            System.out.print(element + " ");
+        }
 	}
 	
 	/**
@@ -23,9 +23,11 @@ public class Algorithm_Java {
 			int temp = elements[i];
 			int pre  = i - 1;
 			for(; pre >= 0; pre--) {
-				if(temp < elements[pre])
-					elements[pre + 1] = elements[pre];
-				else break;
+				if (temp < elements[pre]) {
+                    elements[pre + 1] = elements[pre];
+                } else {
+                    break;
+                }
 			}
 			elements[pre + 1] = temp;
 		}
@@ -39,25 +41,23 @@ public class Algorithm_Java {
 	 */
 	public static void hellSort(int[] element){
         int d = element.length;
-        while (true){
-            d = d/2;
-            for(int i = 0; i < d; i++){
-                for(int j = i+d; j < element.length; j+=d){
+        do {
+            d = d / 2;
+            for (int i = 0; i < d; i++) {
+                for (int j = i + d; j < element.length; j += d) {
                     int tmp = element[j];
-                    int k = j-d;
-                    for(;k >= 0; k-=d){
-                        if(tmp < element[k]){
-                            element[k + d ] = element[k];
-                        }
-                        else{
+                    int k = j - d;
+                    for (; k >= 0; k -= d) {
+                        if (tmp < element[k]) {
+                            element[k + d] = element[k];
+                        } else {
                             break;
                         }
                     }
                     element[k + d] = tmp;
                 }
             }
-            if(d == 1) break;
-        }
+        } while (d != 1);
     }
 	
 	/**
@@ -122,9 +122,13 @@ public class Algorithm_Java {
 	private static int partition(int[] elements, int low, int high) {
 	    int base = elements[low];
 	    while (low < high) {
-	        while (low < high && base < elements[high]) high--;
+	        while (low < high && base < elements[high]) {
+                high--;
+            }
 	        elements[low] = elements[high];
-	        while (low < high && base > elements[low]) low++;
+	        while (low < high && base > elements[low]) {
+                low++;
+            }
 	        elements[high] = elements[low];
         }
 	    elements[low] = base;
@@ -216,17 +220,18 @@ public class Algorithm_Java {
         int[][] temp = new int[10][number.length];
         int[] order = new int[10];
         while (m <= d) {
-            for (int i = 0; i < number.length; i++) {
-                int lsd = ((number[i] / n) % 10);
-                temp[lsd][order[lsd]] = number[i];
+            for (int value : number) {
+                int lsd = ((value / n) % 10);
+                temp[lsd][order[lsd]] = value;
                 order[lsd]++;
             }
             for (int i = 0; i < 10; i++) {
-                if (order[i] != 0)
+                if (order[i] != 0) {
                     for (int j = 0; j < order[i]; j++) {
                         number[k] = temp[i][j];
                         k++;
                     }
+                }
                 order[i] = 0;
             }
             n *= 10;

@@ -5,11 +5,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * @author CRR
+ */
 public class BufferedInputFile {
     public static void main(String[] args) throws IOException {
         File file = new File("D:\\Learning\\workspace\\restart");
         String [] fileList = file.list();
-        for(String name :fileList){
+        for(String name : fileList){
             System.out.println(name);
         }
         System.out.println(read("D:\\Learning\\workspace\\restart\\ocr.py"));
@@ -20,7 +23,7 @@ public class BufferedInputFile {
         String s;
         StringBuilder sb = new StringBuilder();
         while ((s = in.readLine()) != null) {
-            sb.append(s + "\n");
+            sb.append(s).append("\n");
         }
         in.close();
         return sb.toString();

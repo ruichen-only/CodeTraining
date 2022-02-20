@@ -9,6 +9,7 @@ class Data implements Serializable {
         this.n = n;
     }
 
+    @Override
     public String toString() {
         return Integer.toString(n);
     }

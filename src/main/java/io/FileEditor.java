@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class FileEditor {
     private static class FileData {
-        private Path filePath;
+        private final Path filePath;
         private SoftReference<byte[]> dataRef;
 
         public FileData(Path filePath) {
@@ -38,7 +38,7 @@ public class FileEditor {
     }
 
     private FileData currentFileData;
-    private Map<Path, FileData> openedFiles = new HashMap<>();
+    private final Map<Path, FileData> openedFiles = new HashMap<>();
 
     public void switchTo(String filePath) {
         Path path = Paths.get(filePath).toAbsolutePath();
